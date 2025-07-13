@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gowagr_assessment/core/constants/constants.dart';
+import 'package:gowagr_assessment/features/Dashboard/presentation/widgets/filter_chips_widget.dart';
 import 'package:gowagr_assessment/features/shared/shared.dart';
 
 
@@ -29,7 +31,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                 padding: EdgeInsets.symmetric(horizontal: hPadding,vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(42),
-                  border: Border.all(width:2, color: appColors.blue0166F41A.withValues(alpha: 0.1))
+                  border: Border.all(width:2, color: appColors.blue0166F4.withValues(alpha: 0.1))
                 ),
                 child: Image.asset(
                       gowagrLogo, 
@@ -43,33 +45,55 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                                       fontWeight: FontWeight.w700,
                                       fontsize: 20,),
                   XBox( 24),
-                  Text("Portfolio", style: TextStyle(fontSize: 18, color: Colors.grey)),
-                  SizedBox(width: 24),
-                  Text("Activity", style: TextStyle(fontSize: 18, color: Colors.grey)),
+                GowagrTextWidget(text: 'Portfolio', color: appColors.greyDAE0EA,
+                                      fontWeight: FontWeight.w700,
+                                      fontsize: 20,),
+                   XBox( 24),
+                 GowagrTextWidget(text: 'Activity', color: appColors.greyDAE0EA,
+                                      fontWeight: FontWeight.w700,
+                                      fontsize: 20,),
                 ],
               ),
-              const SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: 'Search for a market',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.grey),
-                  ),
+                  YBox(24),
+             
+              GowagrTextField(),
+              YBox(24),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                
+                  children: [
+                      GowagrFilterChip(label: Icon(Icons.trending_up, size: 12, color:  appColors.whiteFBFBFB ),icon:  
+                      GowagrTextWidget(text: 'Trending', color: appColors.whiteFBFBFB,
+                                        fontWeight: FontWeight.w500,
+                                        fontsize: 12,), selected: true, ),
+                      const SizedBox(width: 10),
+                      GowagrFilterChip(icon: Icon(Icons.bookmark_outline, size: 12, color:  appColors.blue355587 ),label:  
+                      
+                      GowagrTextWidget(text: 'Watchlist', color: appColors.blue355587,
+                                        fontWeight: FontWeight.w500,
+                                        fontsize: 12,),  ),
+                                        const SizedBox(width: 10),
+                                          GowagrFilterChip(icon: Icon(CupertinoIcons.music_note, size: 12, color:  appColors.black ),label:  
+                      
+                      GowagrTextWidget(text: 'Entertainment', color: appColors.blue355587,
+                                        fontWeight: FontWeight.w500,
+                                        fontsize: 12,),  ),
+                                        const SizedBox(width: 10),
+                                          GowagrFilterChip(icon: Icon(Icons.sports_soccer_sharp, size: 12, color:  appColors.black ),label:  
+                      
+                      GowagrTextWidget(text: 'Sports', color: appColors.blue355587,
+                                        fontWeight: FontWeight.w500,
+                                        fontsize: 12,),  ),
+                                          const SizedBox(width: 10),
+                                          GowagrFilterChip(icon: Icon(CupertinoIcons.music_note, size: 12, color:  appColors.black ),label:  
+                      
+                      GowagrTextWidget(text: 'Entertainment', color: appColors.blue355587,
+                                        fontWeight: FontWeight.w500,
+                                        fontsize: 12,),  ),
+                  
+                  ],
                 ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  _FilterChip(label: 'Trending', icon: Icons.track_changes, selected: true),
-                  const SizedBox(width: 10),
-                  _FilterChip(label: 'Watchlist', icon: Icons.bookmark),
-                  const SizedBox(width: 10),
-                  _FilterChip(label: 'Entertainment', icon: Icons.music_note),
-                  const SizedBox(width: 10),
-                  _FilterChip(label: 'Sports', icon: Icons.sports_soccer),
-                ],
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -102,30 +126,9 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
 
 
 
-class _FilterChip extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final bool selected;
-  const _FilterChip({required this.label, required this.icon, this.selected = false});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: selected ? Colors.blue : Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 16, color: selected ? Colors.white : Colors.black),
-          const SizedBox(width: 6),
-          Text(label, style: TextStyle(color: selected ? Colors.white : Colors.black)),
-        ],
-      ),
-    );
-  }
-}
+
+
 
 class MarketCard extends StatelessWidget {
   final String title;
@@ -164,11 +167,11 @@ class MarketCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundImage: AssetImage(avatar),
-                radius: 20,
+                radius: 25,
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                child: GowagrTextWidget(text: 'HEIS Delux before Q2, 2025', color: appColors.blue032B69, fontWeight: FontWeight.w700, fontsize: 14,),
               ),
             ],
           ),
@@ -177,13 +180,22 @@ class MarketCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
+                  height: 45,
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade50,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.blue),
+                    color:  appColors.blue0166F4.withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(color: appColors.blue0166F4.withValues(alpha: 0.5), ),
                   ),
-                  child: Center(child: Text("Buy Yes - $yesPrice", style: TextStyle(color: Colors.blue))),
+                  
+                  child: Center(child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                       GowagrTextWidget(text: "Buy Yes - ", color: appColors.blue0166F4, fontWeight: FontWeight.w500, fontsize: 12,), GowagrTextWidget(text: "\u{20A6}80", color: appColors.blue0166F4, fontWeight: FontWeight.w700, fontsize: 12,)
+                    ],
+                  )
+                  
+                  ),
                 ),
               ),
               const SizedBox(width: 10),
