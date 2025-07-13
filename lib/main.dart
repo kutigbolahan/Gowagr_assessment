@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/Dashboard/presentation/dashboard.dart';
+import 'features/Dashboard/presentation/pages/dashboard_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'gowagr',
       
-      home: const ExploreScreen(),
+      home: const DashboardPage(),
     );
   }
 }

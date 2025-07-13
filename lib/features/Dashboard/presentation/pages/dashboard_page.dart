@@ -1,35 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gowagr_assessment/core/constants/constants.dart';
+import 'package:gowagr_assessment/features/shared/shared.dart';
 
 
 
-class ExploreScreen extends StatelessWidget {
-  const ExploreScreen({super.key});
+class DashboardPage extends ConsumerStatefulWidget {
+  const DashboardPage({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends ConsumerState<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: appColors.whiteFBFBFB,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(hPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    'assets/qalla_logo.png', // Replace with your logo asset
-                    height: 32,
-                  ),
-                  const Icon(Icons.more)
-                ],
+              Container(
+                width: 100,height: 50,
+                padding: EdgeInsets.symmetric(horizontal: hPadding,vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(42),
+                  border: Border.all(width:2, color: appColors.blue0166F41A.withValues(alpha: 0.1))
+                ),
+                child: Image.asset(
+                      gowagrLogo, 
+                      height: 30,
+                    ),
               ),
-              const SizedBox(height: 24),
-              const Row(
+               YBox(24),
+               Row(
                 children: [
-                  Text("Explore", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  SizedBox(width: 24),
+                 GowagrTextWidget(text: 'Explore', color: appColors.blue355587,
+                                      fontWeight: FontWeight.w700,
+                                      fontsize: 20,),
+                  XBox( 24),
                   Text("Portfolio", style: TextStyle(fontSize: 18, color: Colors.grey)),
                   SizedBox(width: 24),
                   Text("Activity", style: TextStyle(fontSize: 18, color: Colors.grey)),
@@ -61,10 +74,10 @@ class ExploreScreen extends StatelessWidget {
               const SizedBox(height: 20),
               Expanded(
                 child: ListView(
-                  children: const [
+                  children:  [
                     MarketCard(
                       title: "HEIS Delux before Q2, 2025",
-                      avatar: 'assets/heis.png',
+                      avatar: rema,
                       yesPrice: "₦80",
                       noPrice: "₦20",
                       yesReturn: "₦22k",
@@ -84,6 +97,10 @@ class ExploreScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 class _FilterChip extends StatelessWidget {
   final String label;
@@ -223,8 +240,8 @@ class HeadiesCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const CircleAvatar(
-                backgroundImage: AssetImage('assets/headies.png'),
+               CircleAvatar(
+                backgroundImage: AssetImage(headies),
                 radius: 20,
               ),
               const SizedBox(width: 10),

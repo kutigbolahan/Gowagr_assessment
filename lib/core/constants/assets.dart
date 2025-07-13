@@ -8,6 +8,8 @@ const String baseGifPath = 'assets/gifs/';
 
 /// pngs
 final String gowagrLogo = 'gowagrLogo'.png;
+final String rema = 'rema'.png;
+final String headies = 'headies'.png;
 
 
 /// svgs
