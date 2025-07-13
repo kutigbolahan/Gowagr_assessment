@@ -6,9 +6,10 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:middleman/core/api/https/dio_http_api_interceptor.dart';
+import 'package:gowagr_assessment/core/api/https/dio_http_api_interceptor.dart';
 
-import 'package:middleman/core/core.dart';
+import 'package:gowagr_assessment/core/core.dart';
+
 
 /// dio api client provider
 final dioHttpApiProvider = Provider<IHttpApi>((ref) {
@@ -34,13 +35,13 @@ class DioHttpApi implements IHttpApi {
     final presetHeaders = <String, String>{
       Headers.acceptHeader: '*/*',
       HttpHeaders.contentTypeHeader: 'application/json',
-      // HttpHeaders.authorizationHeader: 'Bearer ${box.read(kToken)}',
+      
     };
 
     _dio.options.headers.addAll(presetHeaders);
 
     debugPrint('About to add interceptors ${presetHeaders.toString()}');
-//UNCOMMENT THIS IF YOU NEED INTERCEPTORS
+
     final dioApiInterceptor = ref.read(dioApiInterceptorProvider);
 
     _dio.interceptors.addAll(
@@ -52,26 +53,11 @@ class DioHttpApi implements IHttpApi {
             responseBody: true,
             error: true,
           ),
-        //UNCOMMENT THIS IF YOU NEED INTERCEPTORS
+      
         dioApiInterceptor,
       ],
     );
-    // InterceptorsWrapper(
-    //   onRequest: (options, handler) {
-    //     // Add token to headers
-    //     options.headers['Authorization'] = 'Bearer ${box.read(kToken)}';
-    //     print('This is auto token ${options.headers['Authorization']}');
-    //     return handler.next(options); // continue
-    //   },
-    //   onResponse: (response, handler) {
-    //     // Do something with response data
-    //     return handler.next(response); // continue
-    //   },
-    //   onError: (DioError e, handler) {
-    //     // Handle errors
-    //     return handler.next(e); // continue
-    //   },
-    // );
+   
   }
 
   static String baseUrl = AppConfig.baseUrl;
@@ -109,16 +95,12 @@ class DioHttpApi implements IHttpApi {
       if (readTimeout != null) {
         _dio.options.receiveTimeout = const Duration(minutes: 1);
       }
-      // final headers = {
-      //   'Authorization': box.read(kToken),
-      //   'Content-Type': 'application/json',
-      //   ..._dio.options.headers,
-      // };
+    
       final response = await _dio.post(
         uri,
         data: data,
         queryParameters: queryParameters,
-        //  options: Options(headers: headers),
+      
       );
 
       log('response by Kuti:: ${response.toString()}');

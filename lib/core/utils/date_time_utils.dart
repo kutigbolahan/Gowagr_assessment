@@ -107,7 +107,7 @@ class DateTimeUtils {
           .parse(time); // Use a format that matches your time string
       return dateFormat.format(parsedTime); // Format the DateTime object
     } catch (e) {
-      print('Error parsing time: $e');
+    
       return 'Invalid time';
     }
   }

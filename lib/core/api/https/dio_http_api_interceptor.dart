@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_local_variable
 
 import 'dart:developer';
 import 'dart:io';
@@ -6,47 +6,32 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:middleman/core/constants/constants.dart';
+import 'package:gowagr_assessment/core/constants/constants.dart';
+
 
 final dioApiInterceptorProvider = Provider<DioApiInterceptor>((ref) {
-  //final authLocalSource = ref.read(authLocalSourceProvider);
+ 
 
   return DioApiInterceptor(
-      // authLocalSource: authLocalSource
+      
       );
 });
 
 class DioApiInterceptor extends Interceptor {
   DioApiInterceptor(
-      // {required this.authLocalSource}
+    
       );
-  // final IAuthLocalSource authLocalSource;
+  
 
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) {
-    /// setup the api keys to be attached to the headers based on the environment
-    // final keyHeaders = getKeyHeaders();
-    // options.headers.addAll(keyHeaders);
-
-    // log('key headers are => $keyHeaders');
-
-    // if (doBasicAuth == false) {
-
-    // }
-
-    // final authSignatureHeader = getAuthSignatureHeader(
-    //   body: options.data ?? {},
-    // );
-
-    // log('authsignature headers are => $authSignatureHeader');
-
-    // options.headers.addAll(authSignatureHeader);
+   
 
     log('dio options headers are => ${options.headers}');
-    // print('This is the token from interceptors${box.read(kToken)}');
+  
 
     /// get the token
     final token = box.read(kToken);
@@ -82,7 +67,7 @@ class DioApiInterceptor extends Interceptor {
           errorMsg.toLowerCase().contains('invalid token')) {
         debugPrint('Due for a refresh-token call');
         doRefresh = true;
-        // return UnAuthorizedException();
+       
       }
     }
 
