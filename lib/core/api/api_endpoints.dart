@@ -4,7 +4,7 @@ import 'package:gowagr_assessment/core/config.dart';
 final baseUrl = AppConfig.baseUrl;
 
 class _GowagrEndpoints {
-  String gowagr = '$baseUrl/';
+  String gowagr = '$baseUrl';
  
 }
 

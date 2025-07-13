@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -14,7 +15,9 @@ class AppConfig {
  
 
   static Future<void> initDependencies() async {
-  
+    WidgetsFlutterBinding.ensureInitialized();
+    AppConfig.setEnvironment(Environment.production);
+ 
     await GetStorage.init();
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

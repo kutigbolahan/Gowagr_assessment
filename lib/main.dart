@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/config.dart';
 import 'features/Dashboard/presentation/pages/dashboard_page.dart';
 
 void main() {
-  runApp(const MyApp());
+
+        AppConfig.initDependencies();
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
