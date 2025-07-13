@@ -3,12 +3,12 @@ import 'package:gowagr_assessment/core/config.dart';
 
 final baseUrl = AppConfig.baseUrl;
 
-class _AuthEndpoints {
-  String createAccount = '$baseUrl/auth/UserSignup';
+class _GowagrEndpoints {
+  String gowagr = '$baseUrl/';
  
 }
 
 
 
-final authEndpoints = _AuthEndpoints();
+final gowagrEndpoints = _GowagrEndpoints();
 
