@@ -100,14 +100,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                 child: ListView(
                   children:  [
                     MarketCard(
-                      title: "HEIS Delux before Q2, 2025",
-                      avatar: rema,
-                      yesPrice: "₦80",
-                      noPrice: "₦20",
-                      yesReturn: "₦22k",
-                      noReturn: "₦15k",
-                      trades: 129,
-                      endDate: "Ends 14th Oct."
+                      
                     ),
                     SizedBox(height: 16),
                     HeadiesCard(),
@@ -131,25 +124,11 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
 
 
 class MarketCard extends StatelessWidget {
-  final String title;
-  final String avatar;
-  final String yesPrice;
-  final String noPrice;
-  final String yesReturn;
-  final String noReturn;
-  final int trades;
-  final String endDate;
+ 
 
   const MarketCard({
     super.key,
-    required this.title,
-    required this.avatar,
-    required this.yesPrice,
-    required this.noPrice,
-    required this.yesReturn,
-    required this.noReturn,
-    required this.trades,
-    required this.endDate,
+   
   });
 
   @override
@@ -157,7 +136,8 @@ class MarketCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        color: appColors.whiteFFFFFF,
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey.shade200),
       ),
       child: Column(
@@ -166,16 +146,16 @@ class MarketCard extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(avatar),
+                backgroundImage: AssetImage(rema),
                 radius: 25,
               ),
-              const SizedBox(width: 10),
+              const XBox( 10),
               Expanded(
                 child: GowagrTextWidget(text: 'HEIS Delux before Q2, 2025', color: appColors.blue032B69, fontWeight: FontWeight.w700, fontsize: 14,),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const YBox( 24),
           Row(
             children: [
               Expanded(
@@ -188,7 +168,8 @@ class MarketCard extends StatelessWidget {
                     border: Border.all(color: appColors.blue0166F4.withValues(alpha: 0.5), ),
                   ),
                   
-                  child: Center(child: Row(
+                  child: Center(
+                    child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                        GowagrTextWidget(text: "Buy Yes - ", color: appColors.blue0166F4, fontWeight: FontWeight.w500, fontsize: 12,), GowagrTextWidget(text: "\u{20A6}80", color: appColors.blue0166F4, fontWeight: FontWeight.w700, fontsize: 12,)
@@ -198,36 +179,71 @@ class MarketCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
+              const XBox( 17),
+             Expanded(
                 child: Container(
+                  height: 45,
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.red.shade50,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.red),
+                    color:  appColors.redFF4E4E.withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(color: appColors.redFF4E4E.withValues(alpha: 0.5), ),
                   ),
-                  child: Center(child: Text("Buy No - $noPrice", style: TextStyle(color: Colors.red))),
+                  
+                  child: Center(child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                       GowagrTextWidget(text: "Buy No - ", color: appColors.redFF4E4E, fontWeight: FontWeight.w500, fontsize: 12,), GowagrTextWidget(text: "\u{20A6}20", color: appColors.redFF4E4E, fontWeight: FontWeight.w700, fontsize: 12,)
+                    ],
+                  )
+                  
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
+             const YBox( 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("₦10k  →  $yesReturn", style: const TextStyle(color: Colors.green)),
-              Text("₦10k  →  $noReturn", style: const TextStyle(color: Colors.green)),
+              Padding(
+                padding: const EdgeInsets.only(left:50.0),
+                child: Row(
+                  
+                  children: [
+                GowagrTextWidget(text: "\u{20A6}10k", color: appColors.grey98A8C1, fontWeight: FontWeight.w600, fontsize: 11,),
+                const XBox( 5),
+                Icon(Icons.arrow_forward, color: appColors.grey98A8C1, size: 12,),
+                const XBox( 5),
+                             GowagrTextWidget(text: "\u{20A6}22k", color: appColors.green17BD5E, fontWeight: FontWeight.w600, fontsize: 11,)
+                  ],
+                ),
+              ),
+              Padding(
+               padding: const EdgeInsets.only(right:50.0),
+                child: Row(
+                  
+                  children: [
+                GowagrTextWidget(text: "\u{20A6}10k", color: appColors.grey98A8C1, fontWeight: FontWeight.w600, fontsize: 11,),
+                 const XBox( 5),
+                Icon(Icons.arrow_forward, color: appColors.grey98A8C1, size: 12,),
+                 const XBox( 5),
+                             GowagrTextWidget(text: "\u{20A6}15k", color: appColors.green17BD5E, fontWeight: FontWeight.w600, fontsize: 11,)
+                  ],
+                ),
+              )
+            
             ],
           ),
-          const SizedBox(height: 8),
+              const YBox( 24),
           Row(
             children: [
-              const Icon(Icons.bar_chart, size: 16),
-              const SizedBox(width: 4),
-              Text("$trades Trades"),
+               Icon(Icons.bar_chart, size: 16, color: appColors.grey98A8C1),
+              const XBox( 2),
+              GowagrTextWidget(text: "129 Trades", color: appColors.grey98A8C1, fontWeight: FontWeight.w500, fontsize: 10,),
               const Spacer(),
-              Text(endDate, style: const TextStyle(color: Colors.grey))
+              GowagrTextWidget(text: "Ends 14th oct.", color: appColors.grey98A8C1, fontWeight: FontWeight.w500, fontsize: 10,),
+              Icon(Icons.bookmark_outline, size: 16, color: appColors.grey98A8C1),
             ],
           )
         ],
@@ -244,7 +260,8 @@ class HeadiesCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        color: appColors.whiteFFFFFF,
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.grey.shade200),
       ),
       child: Column(
@@ -254,27 +271,27 @@ class HeadiesCard extends StatelessWidget {
             children: [
                CircleAvatar(
                 backgroundImage: AssetImage(headies),
-                radius: 20,
+                radius: 25,
               ),
               const SizedBox(width: 10),
-              const Expanded(
-                child: Text("Who Wins Headies Next Rated Award 2024?",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Expanded(
+                child: GowagrTextWidget(text: 'Who Wins Headies Next Rated \nAward 2024?', color: appColors.blue032B69, fontWeight: FontWeight.w700, fontsize: 14,),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          _VoteRow(name: "Odumodublvck", yes: "₦55", no: "₦45"),
+          _VoteRow(name: "Odumodublvck", yes: "Yes", no: "No", yesAmount: '\u{20A6}55', noAmount: '\u{20A6}45',),
           const SizedBox(height: 10),
-          _VoteRow(name: "Shallipopi", yes: "₦45", no: "₦55"),
+          _VoteRow(name: "Shallipopi", yes: "Yes", no: "No", yesAmount: '\u{20A6}45', noAmount: '\u{20A6}55',),
           const SizedBox(height: 12),
-          Row(
+         Row(
             children: [
-              const Icon(Icons.bar_chart, size: 16),
-              const SizedBox(width: 4),
-              const Text("₦1.5M"),
+               Icon(Icons.bar_chart, size: 16, color: appColors.grey98A8C1),
+              const XBox( 2),
+              GowagrTextWidget(text: "\u{20A6}1.5M", color: appColors.grey98A8C1, fontWeight: FontWeight.w500, fontsize: 10,),
               const Spacer(),
-              const Text("Ends 14th Oct.", style: TextStyle(color: Colors.grey)),
+              GowagrTextWidget(text: "Ends 14th oct.", color: appColors.grey98A8C1, fontWeight: FontWeight.w500, fontsize: 10,),
+              Icon(CupertinoIcons.heart, size: 16, color: appColors.grey98A8C1),
             ],
           )
         ],
@@ -286,23 +303,32 @@ class HeadiesCard extends StatelessWidget {
 class _VoteRow extends StatelessWidget {
   final String name;
   final String yes;
+  final dynamic yesAmount;
   final String no;
-  const _VoteRow({required this.name, required this.yes, required this.no});
+    final dynamic noAmount;
+  const _VoteRow({required this.name, required this.yes, required this.no, required this.yesAmount, required this.noAmount});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(flex: 2, child: Text(name)),
+        Expanded(flex: 2, child: GowagrTextWidget(text: name, color: appColors.grey7387A6, fontWeight: FontWeight.w600, fontsize: 12,),),
         Expanded(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue),
+              border: Border.all(color: appColors.blue0166F4.withValues(alpha: 0.5)),
               borderRadius: BorderRadius.circular(6),
-              color: Colors.blue.shade50,
+              color: appColors.blue0166F4.withValues(alpha: 0.05),
             ),
-            child: Center(child: Text("Yes $yes", style: const TextStyle(color: Colors.blue))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+             GowagrTextWidget(text: yes, color: appColors.blue0166F4, fontWeight: FontWeight.w500, fontsize: 12,),
+             XBox(5),
+              GowagrTextWidget(text: yesAmount, color: appColors.blue0166F4, fontWeight: FontWeight.w600, fontsize: 12,)
+              ],
+            ),
           ),
         ),
         const SizedBox(width: 6),
@@ -310,11 +336,18 @@ class _VoteRow extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.red),
+              border: Border.all(color: appColors.redFF4E4E.withValues(alpha: 0.5)),
               borderRadius: BorderRadius.circular(6),
-              color: Colors.red.shade50,
+              color: appColors.redFF4E4E.withValues(alpha: 0.05),
             ),
-            child: Center(child: Text("No $no", style: const TextStyle(color: Colors.red))),
+            child:  Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+             GowagrTextWidget(text: no, color: appColors.redFF4E4E, fontWeight: FontWeight.w500, fontsize: 12,),
+             XBox(5),
+              GowagrTextWidget(text: noAmount, color: appColors.redFF4E4E, fontWeight: FontWeight.w600, fontsize: 12,)
+              ],
+            ),
           ),
         ),
       ],
