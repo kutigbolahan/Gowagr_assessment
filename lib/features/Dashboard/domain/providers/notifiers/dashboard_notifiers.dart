@@ -12,10 +12,17 @@ class DashboardNotifiers
   Future<void> gowagr({
     required WidgetRef ref,
     required BuildContext context,
+     
+   required String? keyword,
+  required  bool? trending,
+   required int? size,
+   required int? page,
+   required String? category,
+      
    
   }) async {
     state = state.copiedLoading(true);
-    final response = await ref.read(dashboardRemoteSourceProvider).gowagr();
+    final response = await ref.read(dashboardRemoteSourceProvider).gowagr(keyword:keyword,trending: trending,size: size,page: page, category: category);
 
     state = response;
   }

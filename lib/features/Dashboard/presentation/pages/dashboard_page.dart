@@ -24,7 +24,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
   @override
   void initState() {
     super.initState();
-   
+  
   }
 
   @override
@@ -45,6 +45,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
           child: Padding(
             padding: const EdgeInsets.all(hPadding),
             child: SingleChildScrollView(
+              
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,7 +66,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                     children: [
                      GestureDetector(
                       onTap: (){
-                         ref.watch(gowagrProvider.notifier).gowagr(ref: ref, context: context);
+                        genericFunctions.reFreshAllEndpoints(ref, context);
                       },
                        child: GowagrTextWidget(text: 'Explore', color: appColors.blue355587,
                                             fontWeight: FontWeight.w700,
@@ -123,11 +124,15 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                     ),
                   ),
                   const YBox(20),
-                   MarketCard(
-                          
-                        ),
+                 
+                   // height: 100,
+
+                MarketCard(
+                            
+                          ),
+                   
                         YBox(20),
-                        HeadiesCard(),
+                      // HeadiesCard(),
                   // Expanded(
                   //   child: ListView(
                   //     children:  [
@@ -148,6 +153,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
     );
   }
 }
+
 
 
 

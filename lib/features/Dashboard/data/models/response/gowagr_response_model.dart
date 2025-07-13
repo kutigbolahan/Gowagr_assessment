@@ -67,7 +67,7 @@ class Events {
     dynamic resolutionSource;
     List<String>? supportedCurrencies;
     dynamic totalVolume;
-    int? totalOrders;
+    dynamic totalOrders;
 
     Events({this.createdAt, this.markets, this.resolvedAt, this.imageUrl, this.image128Url, this.id, this.title, this.type, this.description, this.category, this.hashtags, this.countryCodes, this.regions, this.status, this.resolutionDate, this.resolutionSource, this.supportedCurrencies, this.totalVolume, this.totalOrders});
 

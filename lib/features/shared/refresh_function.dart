@@ -8,7 +8,7 @@ final genericFunctions = GenericFunctions();
 class GenericFunctions {
   reFreshAllEndpoints(WidgetRef ref, BuildContext context) {
   
-             ref.watch(gowagrProvider.notifier).gowagr(ref: ref, context: context);
+             ref.watch(gowagrProvider.notifier).gowagr(ref: ref, context: context,keyword: '',trending: true,size: 20,page: 1, category: '');
   }
 }
 

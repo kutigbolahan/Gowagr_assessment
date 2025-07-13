@@ -10,7 +10,13 @@ final authRepositoryProvider = Provider<DashboardRepositories>((ref) {
 
 abstract class DashboardRepositories {
  Future<ApiResponse<GowagrModelResponse>> gowagr(
-   
+   {
+   required String? keyword,
+  required  bool? trending,
+   required int? size,
+   required int? page,
+   required String? category,
+      }
   );
 }
 
@@ -25,10 +31,14 @@ class DashboardRepositoriesImpl implements DashboardRepositories {
 
 
   @override
-  Future<ApiResponse<GowagrModelResponse>> gowagr(
-   
-      ) async {
-    final response = await dashboardRemoteSource.gowagr();
+  Future<ApiResponse<GowagrModelResponse>> gowagr({
+   required String? keyword,
+   required bool? trending,
+   required int? size,
+   required int? page,
+   required String? category,
+      }) async {
+    final response = await dashboardRemoteSource.gowagr(keyword: keyword,trending: trending,size: size,page: page, category: category );
     return response;
   }
 

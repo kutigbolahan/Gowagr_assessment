@@ -13,7 +13,13 @@ final dashboardRemoteSourceProvider = Provider<DashboardRemoteSource>((ref) {
 
 abstract class DashboardRemoteSource {
   Future<ApiResponse<GowagrModelResponse>> gowagr(
-
+   {
+   required String? keyword,
+  required  bool? trending,
+   required int? size,
+   required int? page,
+   required String? category,
+      }
   );
   
 }
@@ -27,10 +33,24 @@ class DashboardRemoteSourceImpl implements DashboardRemoteSource {
   
   @override
   Future<ApiResponse<GowagrModelResponse>> gowagr(
+     {
+   required String? keyword,
+  required  bool? trending,
+   required int? size,
+   required int? page,
+   required String? category,
+      }
    
   )async {
     try {
       final response = await apiClient.get(gowagrEndpoints.gowagr,
+       queryParameters: {
+          if (keyword != null) 'keyword': keyword,
+          if (trending != null) 'trending': true,
+          'size': size,
+          'page': page,
+          if (category != null) 'category': category,
+        },
         );
 
       if (response.isSuccess) {
