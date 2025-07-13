@@ -11,29 +11,10 @@ class AppConfig {
 
   static late Map<String, dynamic> _constants;
 
-  // dynamicLinking(BuildContext context) {
-  //   StreamSubscription<String?>? _sub;
-
-  //   _sub = linkStream.listen((String? link) {
-  //     if (link != null) {
-  //       _navigateToLink(link, context);
-  //     }
-  //   }, onError: (err) {
-  //     // Handle error
-  //   });
-  // }
-
-  // void _navigateToLink(String link, BuildContext context) {
-  //   // Parse the link and navigate to a specific screen
-  //   if (link.contains("DealsPage")) {
-  //     MiddlemanNavigator.of(context).push(DealsRoute());
-  //     // Navigator.pushNamed(context, '/specific-section');
-  //   }
-  // }
+ 
 
   static Future<void> initDependencies() async {
-    //  PushNotificationService().initialize();
-    // pushNotificationService.initialise();
+  
     await GetStorage.init();
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -67,20 +48,20 @@ class AppConfig {
 }
 
 class _Constants {
-  static const baseUrl = 'https://igbigi-app-b20c541150a8.herokuapp.com';
+  static const baseUrl = 'https://api.gowagr.app/pm/events/public-events';
 
   static const appName = 'APP_NAME';
   static const environment = 'ENVIRONMENT';
 
   static Map<String, dynamic> developmentConstants = {
     baseUrl: baseUrl,
-    appName: 'XCel DEV',
+    appName: 'Gowagr Dev',
     environment: Environment.development,
   };
 
   static Map<String, dynamic> prodConstants = {
     baseUrl: baseUrl,
-    appName: 'XCel',
+    appName: 'Gowagr Prod',
     environment: Environment.production,
   };
 }

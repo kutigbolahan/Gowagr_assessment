@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gowagr_assessment/core/services/storage/storage_service.dart';
 
-import 'package:middleman/core/services/storage/storage.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
@@ -38,19 +39,19 @@ class SharedPrefStorageService implements StorageService {
     final runTimeType = data.runtimeType;
 
     switch (runTimeType) {
-      case String:
+      case const (String):
         await prefs.setString(key, data);
         break;
 
-      case int:
+      case const (int):
         await prefs.setInt(key, data);
         break;
 
-      case double:
+      case const (double):
         await prefs.setDouble(key, data);
         break;
 
-      case bool:
+      case const (bool):
         await prefs.setBool(key, data);
         break;
 
