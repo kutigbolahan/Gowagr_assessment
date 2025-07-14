@@ -2,11 +2,15 @@
 
 📘 Project Overview
 
-🧱 Architecture & Folder Structure
-
 This project uses a simplified Clean Architecture to maintain separation of concerns while staying pragmatic and scalable.
 
-Folder Structure
+ 🧱 Architecture & Folder Structure
+
+This app follows a **simplified Clean Architecture**, balancing structure and flexibility. It separates concerns into clearly defined layers: `data`, `domain`, `presentation`, and `repository`.
+
+### Folder Structure
+
+```text
 lib/
 ├── core/                         # Global utilities, constants, services
 │   ├── constants/
@@ -25,24 +29,37 @@ lib/
 │           ├── pages/
 │           └── widgets/
 └── main.dart
+
 🧠 State Management
 
-Uses Riverpod for managing application state.
-StateNotifier classes handle business logic and live inside domain/notifiers/.
-Providers are broken down into modular files inside domain/provider/ for better structure and easier scalability.
-UI interacts with state through ref.watch() and Consumer.
-💾 Caching Implementation
+Uses Riverpod for reactive and testable state management.
+StateNotifier is used to control state logic inside domain/notifiers/.
+All providers are modular and placed in domain/provider/, rather than one large provider.dart file.
+UI components consume state using ref.watch() and Consumer.
 
-Hive is used as the local storage solution.
-Inside DashboardNotifiers, the gowagr() method handles:
-Checking connectivity via InternetConnectionChecker.
-On success: fetching data from the API and saving it to Hive.
-On failure (offline): loading from cached Hive data (gowagrBox).
-Cached data is parsed back into model classes for rendering in the UI.
-⚖️ Decisions & Trade-offs
+💾 Caching Strategy
 
-❌ No entities, usecases, mappers, or abstract interfaces — kept architecture lean and focused.
-✅ Split provider/ folder improves maintainability and modularity without over-engineering.
-✅ Clean separation between layers (data, domain, presentation), without deep nesting.
-❌ Repositories are implemented directly without abstraction for quicker development and fewer indirections.
-✅ Designed to scale progressively — complexity can be introduced later if needed.
+Caching is handled with Hive, a lightweight key-value database for local persistence.
+The app checks for internet connectivity using InternetConnectionChecker:
+If online: fetch from API → save result to Hive box (gowagrBox)
+If offline: load previously cached JSON from Hive and parse it into model classes
+This ensures a seamless offline-first experience for the user.
+
+⚖️ Design Decisions & Trade-offs
+
+✅ Clean Architecture-inspired, without over-complication:
+Removed entities, usecases, interfaces, and mappers for simplicity.
+Kept state logic and providers lightweight and grouped by feature.
+✅ Used StateNotifier instead of Notifier or AsyncNotifier for finer control.
+✅ Split providers into provider/ folder to allow scalable state injection.
+❌ No abstract interfaces — repositories are concrete classes, injected directly.
+✅ Prioritized developer experience and maintainability over academic structure.
+
+🛠 Tech Stack
+Flutter
+Riverpod
+Hive (for caching)
+Dio (for HTTP requests)
+InternetConnectionChecker
+Clean architecture principles
+
