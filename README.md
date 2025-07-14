@@ -56,6 +56,8 @@ Kept state logic and providers lightweight and grouped by feature.
 ✅ Prioritized developer experience and maintainability over academic structure.
 ✅ Fallback to cached data to ensure a smooth user experience during network disruptions
 ❌ Possibility of displaying outdated (stale) data when offline
+✅ Added pull-to-refresh capability to allow users manually reload data when online  
+ This empowers users to fetch fresh data anytime, especially after reconnecting to the internet
 
 🛠 Tech Stack
 Flutter
@@ -64,4 +66,3 @@ Hive (for caching)
 Dio (for HTTP requests)
 InternetConnectionChecker
 Clean architecture principles
-
