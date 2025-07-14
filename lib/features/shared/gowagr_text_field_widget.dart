@@ -21,7 +21,8 @@ class _GowagrTextFieldState extends ConsumerState<GowagrTextField> {
       return TextField(
      
       onChanged: (val){
-         ref.watch(gowagrProvider.notifier).gowagr(ref: ref, context: context,keyword: val,trending: true,size: 30,page: 1, category: widget.category);
+      widget.category == 'Trending' ||  widget.category == 'Watchlist'?
+      ref.watch(gowagrProvider.notifier).gowagr(ref: ref, context: context,keyword: val,trending: true,size: 30,page: 1, category: ''):  ref.watch(gowagrProvider.notifier).gowagr(ref: ref, context: context,keyword: val,trending: true,size: 30,page: 1, category: widget.category);
       },
       decoration: InputDecoration(
         
