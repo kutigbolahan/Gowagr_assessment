@@ -54,6 +54,8 @@ Kept state logic and providers lightweight and grouped by feature.
 ✅ Split providers into provider/ folder to allow scalable state injection.
 ❌ No abstract interfaces — repositories are concrete classes, injected directly.
 ✅ Prioritized developer experience and maintainability over academic structure.
+✅  Fallback to cached data to ensure a smooth user experience during network disruptions
+❌ Possibility of displaying outdated (stale) data when offline
 
 🛠 Tech Stack
 Flutter
