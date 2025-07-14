@@ -34,15 +34,15 @@ class DioApiInterceptor extends Interceptor {
   
 
     /// get the token
-    final token = box.read(kToken);
+   // final token = box.read(kToken);
 
-    if (token != null) {
-      options.headers.addAll({
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-      });
+    // if (token != null) {
+    //   options.headers.addAll({
+    //     HttpHeaders.authorizationHeader: 'Bearer $token',
+    //   });
 
-      return handler.next(options);
-    }
+    //   return handler.next(options);
+    // }
 
     return handler.next(options);
   }

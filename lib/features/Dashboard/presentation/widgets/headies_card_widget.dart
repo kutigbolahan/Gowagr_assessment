@@ -1,14 +1,59 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gowagr_assessment/core/constants/constants.dart';
+import 'package:gowagr_assessment/features/Dashboard/domain/providers/provider/dashboard_providers.dart';
 import 'package:gowagr_assessment/features/shared/shared.dart';
 
-class HeadiesCard extends StatelessWidget {
+class HeadiesCard extends ConsumerStatefulWidget {
   const HeadiesCard({super.key});
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _HeadiesCardState();
+}
+
+class _HeadiesCardState extends ConsumerState<HeadiesCard> {
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return  Consumer(
+      builder: (context, ref, child) {
+        final gowagrProviderList = ref.watch(gowagrProvider);
+
+        if (gowagrProviderList.isLoading) {
+          return const OverviewSkeleton();
+        } else if (gowagrProviderList.data?.events?.isEmpty == true) {
+          return Center(
+            child: GowagrTextWidget(
+              text: 'No Wagers Available',
+              color: appColors.grey7387A6,
+              fontWeight: FontWeight.w500,
+              fontsize: 12,
+            ),
+          );
+        } else if (gowagrProviderList.data?.events == null) {
+          return Center(
+            child: GowagrTextWidget(
+              text: 'No Wagers Available',
+              color: appColors.grey7387A6,
+              fontWeight: FontWeight.w500,
+              fontsize: 12,
+            ),
+          );
+        } else {
+          return ListView.builder(
+         
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemCount: gowagrProviderList.data?.events?.length,
+            itemBuilder: (BuildContext context, int index) {
+              final wagerlist = gowagrProviderList.data?.events?[index];
+
+              return Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child:
+                
+                 Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: appColors.whiteFFFFFF,
@@ -19,17 +64,25 @@ class HeadiesCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: [
-               CircleAvatar(
-                backgroundImage: AssetImage(headies),
-                radius: 25,
-              ),
-              const SizedBox(width: 10),
-                Expanded(
-                child: GowagrTextWidget(text: 'Who Wins Headies Next Rated \nAward 2024?', color: appColors.blue032B69, fontWeight: FontWeight.w700, fontsize: 14,),
-              ),
-            ],
-          ),
+                        children: [
+                          CircleAvatar(
+                            radius: 25, // Image radius
+                            backgroundImage: NetworkImage(
+                              wagerlist?.imageUrl ?? kDummyImage,
+                            ),
+                          ),
+
+                          const XBox(10),
+                          Expanded(
+                            child: GowagrTextWidget(
+                              text: wagerlist?.title ?? '',
+                              color: appColors.blue032B69,
+                              fontWeight: FontWeight.w700,
+                              fontsize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
           const SizedBox(height: 12),
           _VoteRow(name: "Odumodublvck", yes: "Yes", no: "No", yesAmount: '\u{20A6}55', noAmount: '\u{20A6}45',),
           const SizedBox(height: 10),
@@ -47,9 +100,17 @@ class HeadiesCard extends StatelessWidget {
           )
         ],
       ),
+    )
+              );
+            },
+          );
+        }
+      },
     );
   }
 }
+
+
 
 class _VoteRow extends StatelessWidget {
   final String name;
