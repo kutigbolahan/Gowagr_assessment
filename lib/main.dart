@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gowagr_assessment/features/Dashboard/data/models/response/events.dart';
 import 'package:gowagr_assessment/features/Dashboard/data/models/response/markerts.dart';
+import 'package:gowagr_assessment/features/Dashboard/presentation/pages/homepage_page.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart' show ResponsiveSizer;
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'gowagr',
       
-      home: const DashboardPage(),
+      home: const Hompage()
+      //DashboardPage(),
     );
     });
     
