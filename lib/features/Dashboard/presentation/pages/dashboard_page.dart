@@ -19,14 +19,6 @@ class DashboardPage extends ConsumerStatefulWidget {
 class _DashboardPageState extends ConsumerState<DashboardPage> {
   String selectedFilter = 'Trending';
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     genericFunctions.reFreshAllEndpoints(ref, context);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

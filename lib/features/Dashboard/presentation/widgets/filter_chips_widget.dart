@@ -28,19 +28,19 @@ class GowagrFilterChip extends ConsumerStatefulWidget {
 class _GowagrFilterChipState extends ConsumerState<GowagrFilterChip> {
   void _handleTap() {
     setState(() {
-     widget.name == 'Trending' ||   widget.name == 'Watchlist'?  genericFunctions.reFreshAllEndpoints(ref, context):
-      ref
-          .watch(gowagrProvider.notifier)
-          .gowagr(
-            ref: ref,
-            context: context,
-            keyword: '',
-            trending: false,
-            size: 20,
-            page: 1,
-            category: 
-            widget.name,
-          );
+      widget.name == 'Trending' || widget.name == 'Watchlist'
+          ? genericFunctions.reFreshAllEndpoints(ref, context)
+          : ref
+                .watch(gowagrProvider.notifier)
+                .gowagr(
+                  ref: ref,
+                  context: context,
+                  keyword: '',
+                  trending: false,
+                  size: 20,
+                  page: 1,
+                  category: widget.name,
+                );
     });
   }
 

@@ -106,7 +106,7 @@ class _MarketCardState extends ConsumerState<MarketCard> {
                       Row(
                         children: [
                           CircleAvatar(
-                            radius: 25, // Image radius
+                            radius: 25,
                             backgroundImage: NetworkImage(
                               wagerlist?.imageUrl ?? kDummyImage,
                             ),

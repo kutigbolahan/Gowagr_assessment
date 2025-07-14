@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-
 import 'package:flutter/services.dart';
-
-
 
 enum Environment { development, production }
 
@@ -13,15 +10,13 @@ class AppConfig {
 
   static late Map<String, dynamic> _constants;
 
- 
-
   static Future<void> initDependencies() async {
- 
-     
     AppConfig.setEnvironment(Environment.production);
-  
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   static void setEnvironment(Environment environment) {
