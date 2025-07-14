@@ -1,16 +1,48 @@
 # gowagr_assessment
 
-A new Flutter project.
+📘 Project Overview
 
-## Getting Started
+🧱 Architecture & Folder Structure
 
-This project is a starting point for a Flutter application.
+This project uses a simplified Clean Architecture to maintain separation of concerns while staying pragmatic and scalable.
 
-A few resources to get you started if this is your first Flutter project:
+Folder Structure
+lib/
+├── core/                         # Global utilities, constants, services
+│   ├── constants/
+│   ├── utils/
+│   └── services/
+├── features/
+│   └── dashboard/
+│       ├── data/                # API models and data sources (Hive, remote)
+│       │   ├── models/
+│       │   └── datasource/
+│       ├── domain/              # State logic and providers
+│       │   ├── notifiers/       # Riverpod StateNotifiers
+│       │   └── provider/        # Split Riverpod providers by concern
+│       ├── repository/          # Concrete repositories (no interfaces)
+│       └── presentation/        # UI layer (widgets, pages)
+│           ├── pages/
+│           └── widgets/
+└── main.dart
+🧠 State Management
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Uses Riverpod for managing application state.
+StateNotifier classes handle business logic and live inside domain/notifiers/.
+Providers are broken down into modular files inside domain/provider/ for better structure and easier scalability.
+UI interacts with state through ref.watch() and Consumer.
+💾 Caching Implementation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Hive is used as the local storage solution.
+Inside DashboardNotifiers, the gowagr() method handles:
+Checking connectivity via InternetConnectionChecker.
+On success: fetching data from the API and saving it to Hive.
+On failure (offline): loading from cached Hive data (gowagrBox).
+Cached data is parsed back into model classes for rendering in the UI.
+⚖️ Decisions & Trade-offs
+
+❌ No entities, usecases, mappers, or abstract interfaces — kept architecture lean and focused.
+✅ Split provider/ folder improves maintainability and modularity without over-engineering.
+✅ Clean separation between layers (data, domain, presentation), without deep nesting.
+❌ Repositories are implemented directly without abstraction for quicker development and fewer indirections.
+✅ Designed to scale progressively — complexity can be introduced later if needed.
