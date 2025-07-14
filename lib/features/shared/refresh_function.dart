@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gowagr_assessment/core/constants/colors.dart';
@@ -16,7 +16,7 @@ class GenericFunctions {
           context: context,
           keyword: '',
           trending: true,
-          size: 20,
+          size: 10,
           page: 1,
           category: '',
         );

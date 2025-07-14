@@ -3,8 +3,7 @@ const String baseSvgPath = 'assets/svgs/';
 const String basePngPath = 'assets/pngs/';
 const String baseGifPath = 'assets/gifs/';
 
-/// app logo
-//final String appIcon = 'app_icon'.png;
+
 
 /// pngs
 final String gowagrLogo = 'gowagrLogo'.png;
@@ -12,7 +11,7 @@ final String rema = 'rema'.png;
 final String headies = 'headies'.png;
 
 
-/// svgs
+
 
 
 

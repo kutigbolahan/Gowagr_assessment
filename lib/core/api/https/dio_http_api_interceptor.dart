@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use, unused_local_variable
 
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gowagr_assessment/core/constants/constants.dart';
 
 
 final dioApiInterceptorProvider = Provider<DioApiInterceptor>((ref) {
@@ -33,16 +31,7 @@ class DioApiInterceptor extends Interceptor {
     log('dio options headers are => ${options.headers}');
   
 
-    /// get the token
-   // final token = box.read(kToken);
-
-    // if (token != null) {
-    //   options.headers.addAll({
-    //     HttpHeaders.authorizationHeader: 'Bearer $token',
-    //   });
-
-    //   return handler.next(options);
-    // }
+   
 
     return handler.next(options);
   }

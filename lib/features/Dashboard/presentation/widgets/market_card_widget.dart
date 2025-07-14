@@ -16,13 +16,49 @@ class MarketCard extends ConsumerStatefulWidget {
 }
 
 class _MarketCardState extends ConsumerState<MarketCard> {
-  
+  final ScrollController _scrollController = ScrollController();
+  int _currentPage = 1;
+  final int _pageSize = 10;
+  bool _isLoadingMore = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 100 &&
+          !_isLoadingMore) {
+        _loadMore();
+      }
+    });
+  }
+
+  Future<void> _loadMore() async {
+    final provider = ref.read(gowagrProvider.notifier);
+    final pagination = ref.read(gowagrProvider).data?.pagination;
+
+    if (pagination != null && _currentPage < pagination.lastPage!) {
+      setState(() => _isLoadingMore = true);
+      _currentPage++;
+
+      await provider.gowagr(
+        ref: ref,
+        context: context,
+        keyword: '',
+        trending: true,
+        size: _pageSize,
+        page: _currentPage,
+        category: '',
+        isLoadMore: true,
+      );
+
+      setState(() => _isLoadingMore = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Consumer(
+    return Consumer(
       builder: (context, ref, child) {
         final gowagrProviderList = ref.watch(gowagrProvider);
 
@@ -48,8 +84,8 @@ class _MarketCardState extends ConsumerState<MarketCard> {
           );
         } else {
           return ListView.builder(
-         
-            shrinkWrap: true,
+            controller: _scrollController,
+
             physics: const BouncingScrollPhysics(),
             itemCount: gowagrProviderList.data?.events?.length,
             itemBuilder: (BuildContext context, int index) {

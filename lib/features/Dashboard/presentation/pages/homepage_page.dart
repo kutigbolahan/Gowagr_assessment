@@ -21,7 +21,9 @@ class _HompageState extends ConsumerState<Hompage>
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
-
+ WidgetsBinding.instance.addPostFrameCallback((_) {
+      genericFunctions.reFreshAllEndpoints(ref, context);
+    });
     super.initState();
   }
 

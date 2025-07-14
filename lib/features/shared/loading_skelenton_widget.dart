@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gowagr_assessment/core/constants/colors.dart';
-import 'package:gowagr_assessment/core/constants/dimensions.dart';
+
 import 'package:gowagr_assessment/features/shared/shimmer_widget.dart';
 
 class OverviewSkeleton extends StatelessWidget {

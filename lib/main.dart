@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart' show ResponsiveSizer;
 
 import 'core/config.dart';
-import 'features/Dashboard/presentation/pages/dashboard_page.dart';
+
 
 void main() async{
  WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'gowagr',
       
       home: const Hompage()
-      //DashboardPage(),
+   
     );
     });
     

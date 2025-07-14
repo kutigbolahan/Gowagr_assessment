@@ -1,13 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
-//import 'package:get_storage/get_storage.dart';
-import 'package:gowagr_assessment/features/Dashboard/data/models/response/events.dart';
-import 'package:gowagr_assessment/features/Dashboard/data/models/response/markerts.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+
+
 
 enum Environment { development, production }
 
@@ -19,21 +16,10 @@ class AppConfig {
  
 
   static Future<void> initDependencies() async {
-   // WidgetsFlutterBinding.ensureInitialized();
+ 
      
     AppConfig.setEnvironment(Environment.production);
-  //    final dir = await getApplicationDocumentsDirectory();
-  // Hive.init(dir.path);
-
-
-  // Hive.registerAdapter(EventsAdapter());
-  // Hive.registerAdapter(MarketsAdapter());
-  //   await Hive.openBox('gowagrBox');
-
-  //await Hive.openBox<List>('eventsBox');
- 
- 
-   // await GetStorage.init();
+  
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   }

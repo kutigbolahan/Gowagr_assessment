@@ -28,7 +28,7 @@ class GowagrFilterChip extends ConsumerStatefulWidget {
 class _GowagrFilterChipState extends ConsumerState<GowagrFilterChip> {
   void _handleTap() {
     setState(() {
-       widget.name == 'Trending'?  genericFunctions.reFreshAllEndpoints(ref, context):
+     widget.name == 'Trending' ||   widget.name == 'Watchlist'?  genericFunctions.reFreshAllEndpoints(ref, context):
       ref
           .watch(gowagrProvider.notifier)
           .gowagr(
