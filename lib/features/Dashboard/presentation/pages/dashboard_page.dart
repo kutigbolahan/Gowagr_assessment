@@ -75,10 +75,8 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                     children: [
                       GestureDetector(
                         onTap: () async{
-                       //   genericFunctions.reFreshAllEndpoints(ref, context);
-                          final box = Hive.box('gowagrBox');
-                          var name = box.get('gowagr_data');
-     print('This is cached name data${name}');
+                         genericFunctions.reFreshAllEndpoints(ref, context);
+                         
                         },
                         child: GowagrTextWidget(
                           text: 'Explore',
